@@ -31,7 +31,7 @@ class Dsp_stats_ad_task_effects_model extends ADLINKX_Model {
 		$this->db->select('SUM(`dse`.`ds_charge`) AS `charge`');
 		$this->db->where(array('`dse`.`date` >=' => $startdate, '`dse`.`date` <=' => $enddate, '`dse`.`store_id`' => $store_id));
 		$query = $this->db->get();
-		var_dump($this->db->last_query());
+		// var_dump($this->db->last_query());
 		$data = $query->row_array();
 		return is_array($data) ? round($data['charge'] / 100, 2) : 0;
 	}
@@ -49,7 +49,7 @@ class Dsp_stats_ad_task_effects_model extends ADLINKX_Model {
 		$this->db->select('SUM(`dse`.`achieve_payment`) AS `achieve_payment`');
 		$this->db->where(array('`dse`.`date` >=' => $startdate, '`dse`.`date` <=' => $enddate, '`dse`.`store_id`' => $store_id));
 		$query = $this->db->get();
-		var_dump($this->db->last_query());
+		// var_dump($this->db->last_query());
 		$data = $query->row_array();
 		return is_array($data) ? round($data['achieve_payment'], 2) : 0;
 	}
