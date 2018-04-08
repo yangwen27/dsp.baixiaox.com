@@ -68,6 +68,7 @@
         <div class="roi-box">
          <p>ROI</p>
          <span id="roi-value-box">
+             <{$store}>
           <{if $store|@count neq 0}>1:<{$store[0].roi}><{else}>0:0<{/if}>
           </span>
         </div>
