@@ -237,7 +237,7 @@ Adlinkx.prototype.confirm = function(title, json) {
         'background': '#FFF',
         'overflow': 'hidden',
         'zIndex': 10000,
-        'border': '1px solid #494949',
+        'border': '1px solid #eee',
         'innerHTML': '<div class="confirm-title-block">' + text + '</div><div class="confirm-buttons-group-block"><a href="javascript:void(0);" class="JW-confirm-button" data-type="confirm">' + confirm_buts_title + '</a><a href="javascript:void(0);" class="JW-confirm-button" data-type="cancel">' + cancel_buts_title + '</a></div><style>.confirm-title-block{width:100%;height:110px;text-align:center;line-height:110px;word-wrap:break-word;}\n.confirm-buttons-group-block{width:100%;height:49px;border-top:1px solid #17a08c;}\n.JW-confirm-button{display:block;float:left;width:50%;heihgt:49px;line-height:49px;text-align:center;color:#FFF;font-size:14px;background:#1CAF9A;}\n.JW-confirm-button:hover{background:#17a08c;}</style>'
     });
 
