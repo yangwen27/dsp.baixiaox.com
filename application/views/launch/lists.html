@@ -208,7 +208,20 @@
                 }
             });
             if(ids.length > 0){
-                delete_plan(ids.toString());
+                ADLINKX.confirm('您确定要删除吗？',{
+                    'confirm': {
+                        'title': '确定',
+                        'callback': function() {
+                            delete_plan(ids.toString());
+                        }
+                    },
+                    'cancel': {
+                        'title': '取消',
+                        'callback': function() {
+                            return false;
+                        }
+                    }
+                });
             }else{
                 ADLINKX.alert('请选择要删除的投放');
             }

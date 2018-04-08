@@ -76,7 +76,7 @@
                                             <{else}>
                                                 <tr><td colspan="7" rowspan="" headers="" style="text-align: center;">暂无数据</td></tr>
                                             <{/if}>
-                                            
+
                                         </tbody>
                                     </table>
                                     <div id="pages-box" data-count="<{$logers.count}>" data-num="<{$logers.num}>" data-current="<{$logers.current}>"></div>
@@ -102,23 +102,36 @@
         $('.delete-buts').on('click', function() {
             var uid = $(this).attr('data-uid') ? $(this).attr('data-uid') : "<{ $smarty.session.uid }>" ;
             var id = $(this).attr('data-id');
-            $.ajax({
-                url: '/operationLoger/delete/' + uid + '/' + id,
-                type: 'GET',
-                success: function(res) {
-                    console.log(res);
-                    if(res.code == 1 && res.msg == 'success'){
-                        ADLINKX.alert('删除成功',2,function(){
-                            window.location.reload();
-                        });
-                    }else{
-                        ADLINKX.alert('删除失败',2,function(){
-                            window.location.reload();
+            ADLINKX.confirm('您确定要删除吗？',{
+                'confirm': {
+                    'title': '确定',
+                    'callback': function() {
+                        $.ajax({
+                            url: '/operationLoger/delete/' + uid + '/' + id,
+                            type: 'GET',
+                            success: function(res) {
+                                console.log(res);
+                                if(res.code == 1 && res.msg == 'success'){
+                                    ADLINKX.alert('删除成功',2,function(){
+                                        window.location.reload();
+                                    });
+                                }else{
+                                    ADLINKX.alert('删除失败',2,function(){
+                                        window.location.reload();
+                                    });
+                                }
+                            },
+                            error: function(err) {
+                                console.log(err);
+                            }
                         });
                     }
                 },
-                error: function(err) {
-                    console.log(err);
+                'cancel': {
+                    'title': '取消',
+                    'callback': function() {
+                        return false;
+                    }
                 }
             });
         });

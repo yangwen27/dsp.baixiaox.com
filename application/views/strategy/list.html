@@ -53,7 +53,7 @@
                                     </div>
                                     <table class="table table-striped" id="table2">
                                         <thead>
-                                            <tr>          
+                                            <tr>
                                                 <th>序号</th>
                                                 <th>推广组</th>
                                                 <th>推广计划</th>
@@ -69,7 +69,7 @@
                                         <tbody>
                                             <{if $result|@count neq 0}>
                                                 <{foreach $result item=lists key=i}>
-                                                    <tr>          
+                                                    <tr>
                                                         <td><a href="javascript:void(0);" class="select-buts" data-is-checked="false" data-unit-id="<{$lists.unit_id}>"><i class="fa fa-square-o"></i>&nbsp;<{$i+1}></a></td>
                                                         <td><a href="/creativeMange/lists/campaign/creative/0/<{$lists.unit_id}>"><{$lists.unit_name}></a></td>
                                                         <td><{$lists.plan_name}></td>
@@ -85,7 +85,7 @@
                                             <{else}>
                                                 <tr><td colspan="12" rowspan="" headers="" style="text-align: center;">暂无数据</td></tr>
                                             <{/if}>
-                                            
+
                                         </tbody>
                                     </table>
                                     <div id="pages-box" data-count="<{$count}>" data-current="<{$current}>"></div>
@@ -169,7 +169,7 @@
                 $(this).find('i').removeClass('fa-caret-down').addClass('fa-caret-right');
                 $('.brands-lists-block').css('display','none');
             }
-            
+
         });
         $(document).on('click','.brands-lists',function(e){
             $('#store-title-box').html($(this).html()).attr('data-plan-id',$(this).attr('data-plan-id'));
@@ -197,16 +197,42 @@
                 }
             });
             if(ids.length > 0){
-                delete_strategy(ids.toString());
+                ADLINKX.confirm('您确定要删除吗？',{
+                    'confirm': {
+                        'title': '确定',
+                        'callback': function() {
+                            delete_strategy(ids.toString());
+                        }
+                    },
+                    'cancel': {
+                        'title': '取消',
+                        'callback': function() {
+                            return false;
+                        }
+                    }
+                });
             }else{
                 ADLINKX.alert('请选择要删除的策略');
             }
-            
+
         });
 
         $(document).on('click','.delete-buts',function(){
             var ids = $(this).attr('data-unit-id');
-            delete_strategy(ids);
+            ADLINKX.confirm('您确定要删除吗？',{
+                'confirm': {
+                    'title': '确定',
+                    'callback': function() {
+                        delete_strategy(ids);
+                    }
+                },
+                'cancel': {
+                    'title': '取消',
+                    'callback': function() {
+                        return false;
+                    }
+                }
+            });
         });
 
         $(document).on('click','.start-buts',function(){

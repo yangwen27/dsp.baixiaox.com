@@ -110,7 +110,7 @@
                                             <{else}>
                                                 <tr><td colspan="16" rowspan="" headers="" style="text-align: center;">暂无数据</td></tr>
                                             <{/if}>
-                                            
+
                                         </tbody>
                                     </table>
                                     <div id="pages-box" data-count="<{$count}>" data-current="<{$current}>"></div>
@@ -123,7 +123,7 @@
             </div>
             <!-- mainpanel -->
             <div class="allocation-quota-popup-block">
-                
+
             </div>
     </section>
     <script src="/resources/js/libarays/bootstrap.min.js"></script>
@@ -136,23 +136,36 @@
         'use strict';
         get_pages('pages-box','/ajax_api/store/lists/0/0/');
         $(document).on('click', '.delete-buts', function() {
-            $.ajax({
-                url: '/store/delete/' + $(this).attr('data-shop-id'),
-                type: 'GET',
-                success: function(res) {
-                    console.log(res);
-                    if (res.code == 1 && res.msg == 'success') {
-                        ADLINKX.alert('删除成功', 2, function() {
-                            window.location.reload();
-                        });
-                    } else {
-                        ADLINKX.alert('删除失败', 2, function() {
-                            window.location.reload();
+            ADLINKX.confirm('您确定要删除吗？',{
+                'confirm': {
+                    'title': '确定',
+                    'callback': function() {
+                        $.ajax({
+                            url: '/store/delete/' + $(this).attr('data-shop-id'),
+                            type: 'GET',
+                            success: function(res) {
+                                console.log(res);
+                                if (res.code == 1 && res.msg == 'success') {
+                                    ADLINKX.alert('删除成功', 2, function() {
+                                        window.location.reload();
+                                    });
+                                } else {
+                                    ADLINKX.alert('删除失败', 2, function() {
+                                        window.location.reload();
+                                    });
+                                }
+                            },
+                            error: function(err) {
+                                console.log(err);
+                            }
                         });
                     }
                 },
-                error: function(err) {
-                    console.log(err);
+                'cancel': {
+                    'title': '取消',
+                    'callback': function() {
+                        return false;
+                    }
                 }
             });
         });
@@ -200,7 +213,7 @@
 
         $(document).on('click','.select-all-buts',function(){
             if($(this).attr('data-is-checked') == 'false'){
-                
+
                 $(this).attr('data-is-checked',true);
                 $(this).find('i').removeClass('fa-square-o').addClass('fa-check-square-o');
                 $('.select-buts').attr('data-is-checked',true);
