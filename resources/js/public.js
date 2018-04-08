@@ -222,7 +222,7 @@ Adlinkx.prototype.confirm = function(title, json) {
         'top': 0,
         'color': '',
         'background': '#494949',
-        'opacity': 0.6,
+        'opacity': 0.4,
         'zIndex': 10000
     });
     this.createElement('div', {
