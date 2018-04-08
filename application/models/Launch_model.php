@@ -82,9 +82,7 @@ class Launch_model extends ADLINKX_Model {
 	public function update($data = array(), $where = array()) {
 		$this->db->where($where);
 		$query = $this->db->update($this->table_name, $data);
-		var_dump($this->db->affected_rows());
-		var_dump($query);
-		return $query && $this->db->affected_rows() > 0 ? true : false;
+		return $query ? true : false;
 	}
 
 	public function delete($where = array()) {
