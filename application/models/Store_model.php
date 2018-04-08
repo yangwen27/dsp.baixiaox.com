@@ -84,7 +84,7 @@ class Store_model extends ADLINKX_Model {
 		// var_dump($charge);
 		$achieve_payment = $this->dsatem->query_store_achieve_payment($store_id, $start_date, $end_date);
 		// var_dump($achieve_payment);
-		$roi = round(($achieve_payment / $charge), 2);
+		$roi = $charge != 0 && $achieve_payment != 0 ? round($achieve_payment / $charge, 2) : 0;
 		return $roi;
 	}
 
