@@ -217,7 +217,21 @@
 
         $(document).on('click','.delete-buts',function(){
             var ids = $(this).attr('data-plan-id');
-            delete_plan(ids);
+            ADLINKX.confirm('您确定要删除吗？',{
+                'confirm': {
+                    'title': '确定',
+                    'callback': function() {
+                        delete_plan(ids);
+                    }
+                },
+                'cancel': {
+                    'title': '取消',
+                    'callback': function() {
+                        return false;
+                    }
+                }
+            });
+
         });
 
         $(document).on('click','.start-buts',function(){
